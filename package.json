@@ -18,6 +18,7 @@
     "autoprefixer": "10.4.15",
     "contentful-import": "^9.0.4",
     "date-fns": "2.30.0",
+    "he": "^1.2.0",
     "next": "latest",
     "postcss": "8.4.31",
     "react": "^18.2.0",
