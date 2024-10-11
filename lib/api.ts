@@ -355,7 +355,7 @@ export async function getAllUpcomingEvents(
     `query {
       eventsCollection(
         locale: "${locale}",
-        order: date_DESC,
+        order: date_ASC,
         limit: ${limit},
         skip: ${skip},
         where:{ OR: [{date_gt: "${date}"},{date2_gt:"${date}"} ]}
@@ -415,10 +415,9 @@ export async function getAllPastEvents(
   return extractPostEntries(entries);
 }
 
-
 export async function getLatestEventFromChurch(
   locale: Locale,
-  church: Church
+  church: Church,
 ): Promise<any> {
   const entries = await fetchGraphQL(
     `query {

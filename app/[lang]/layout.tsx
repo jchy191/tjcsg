@@ -226,14 +226,14 @@ export default function RootLayout({
       <body>
         <section className="flex h-[calc(100dvh)] min-h-[calc(100dvh)] flex-col">
           <NavBar lang={lang} />
-          <main className="relative mb-auto block overflow-auto">
+          <main className="overflow relative mb-auto block">
             <div className="mb-8 md:mb-12 lg:mb-16">
               {children}
               <SpeedInsights />
               <Analytics />
             </div>
-            <Footer lang={lang} />
           </main>
+          <Footer lang={lang} />
         </section>
       </body>
     </html>

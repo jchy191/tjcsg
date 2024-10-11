@@ -34,8 +34,6 @@ export default async function SpecialEvents({
   const upcomingEvents = await getAllUpcomingEvents(
     lang,
     new Date(Date.now()).toISOString().split('T')[0],
-    2,
-    0,
   );
 
   return (
