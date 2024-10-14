@@ -133,7 +133,7 @@ export default async function PostPage({
         />
         <article>
           {article.description && (
-            <p className="text-md text-gray-500">{article.description}</p>
+            <p className="text-md mt-1 text-gray-500">{article.description}</p>
           )}
           {article.author && (
             <div className="text-md pt-2 italic text-gray-500">

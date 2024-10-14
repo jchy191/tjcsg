@@ -216,8 +216,8 @@ export const bibleBooks: BibleBooks = {
     category: '',
   },
   hosea: {
-    en: '',
-    zh: '',
+    en: 'Hosea',
+    zh: '何西阿书',
     category: '',
   },
   joel: {
