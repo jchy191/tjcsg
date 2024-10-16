@@ -59,8 +59,8 @@ export default async function Page({
       <Header
         title={text[lang].articles}
         breadcrumbs={[
-          { name: text[lang].home, href: '/' },
-          { name: text[lang].articles, href: '/articles' },
+          { name: text[lang].home, href: `/${lang}` },
+          { name: text[lang].articles, href: `/${lang}/articles` },
         ]}
         className="mb-10 mt-2"
       />
