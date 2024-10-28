@@ -114,6 +114,11 @@ const learnmore = [
     zh: '真耶稣教会联总',
     href: 'https://tjc.org/',
   },
+  {
+    en: 'Sermon Archive (Members)',
+    zh: '证道（信徒）',
+    href: 'https://elibrary.tjc.sg',
+  },
   { en: 'Our Stories', zh: '本会的故事', href: 'https://tjc.org/our-stories/' },
   {
     en: 'Our Basic Beliefs',
