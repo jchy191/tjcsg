@@ -55,9 +55,9 @@ Vercel is what we use to host our site, and Cloudflare is our DNS provider as we
 
 All accounts used are shared Internet Ministry accounts. 
 
-Those who are familiar with and have access to Contentful are Sis. Rebecca Tan (Telok Kurau Church), Bro. Joash Chin (Telok Kurau Church) and Bro. Joshua Chin (Adam Road Church). 
+Those who are familiar with and have access to Contentful are **Sis. Rebecca Tan (Telok Kurau Church)**, **Bro. Joash Chin (Telok Kurau Church)** and **Bro. Joshua Chin (Adam Road Church)**. 
 
-Currently, the software engineers working on the project are Bro. Joash Chin (Telok Kurau Church) and Bro. Joshua Chin (Adam Road Church). As mentioned above, the plan is to give more software engineers access to the code base so that they can play around/familiarise themselves with it.
+Currently, the software engineers working on the project are **Bro. Joash Chin (Telok Kurau Church)** and **Bro. Joshua Chin (Adam Road Church)**. As mentioned above, the plan is to give more software engineers access to the code base so that they can play around/familiarise themselves with it.
 
 This document also intends to help with future succession, as the later part will have instructions for future content managers and software engineers.
 
