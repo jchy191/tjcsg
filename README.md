@@ -35,13 +35,13 @@ The website will also serve as a resource for members themselves as well, be it 
 
 The benefit of using Wix during the pandemic was that it allowed brethren who did not have software engineering backgrounds to work on the website. This allowed the website (which was urgently needed at the onset of the pandemic) to be quickly put together.
 
-However, the team faced many issues the more we worked with Wix. There was a lack of flexibility when it came to designing the website, and though it was meant to allow non-coders to work on the website too, we quickly realised that non-coders were also struggling to use Wix. There were also many performance issues - the website would take a long time to load.
+However, the team faced many issues the more we worked with Wix. There was a lack of flexibility when it came to designing the website, and though it was meant to allow non-coders to work on the website too, we quickly realised that non-coders were also struggling to use Wix. There were also many performance issues as the website would take a long time to load.
 
 After much wrestling with Wix and more than a year of deliberation, we decided to code a website from scratch and work on TJCSG 2.0 began. 
 
 The biggest concern with coding a website from scratch is that only software engineers will be able to work on the site. To address this, Contentful is used as our Content Management System (CMS), where all the web articles are stored. By logging in to Contentful, non-coders will be able to add, edit, and delete webpage articles (see section for Content Managers below). 
 
-Moreover, with the trend being more and more brethren studying Computer Science, we decided that going ahead with coding a website from scratch would still be a worth while endeavour. The plan is to give any interested brethren with a coding background access to the code base, making it easier for them to work on the website in the future should they ever decide to do so.
+Moreover, with the trend being more and more brethren studying Computer Science, we decided that going ahead with coding a website from scratch would still be a worth while endeavour. This code base is public and any interested brethren with a coding background can access to the code base, making it easier for them to work on the website in the future should they ever decide to do so.
 
 ## Tools
 
