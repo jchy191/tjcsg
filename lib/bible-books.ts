@@ -287,13 +287,13 @@ export const bibleBooks: BibleBooks = {
   },
   john: {
     en: 'John',
-    zh: '',
-    category: '',
+    zh: '约翰福音',
+    category: 'Gospels',
   },
   acts: {
     en: 'Acts',
-    zh: '约翰福音',
-    category: 'Gospels',
+    zh: '',
+    category: '',
   },
   romans: {
     en: 'Romans',
