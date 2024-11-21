@@ -292,8 +292,8 @@ export const bibleBooks: BibleBooks = {
   },
   acts: {
     en: 'Acts',
-    zh: '',
-    category: '',
+    zh: '约翰福音',
+    category: 'Gospels',
   },
   romans: {
     en: 'Romans',
