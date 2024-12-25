@@ -140,7 +140,7 @@ export default async function PostPage({
               <p className="inline">{text[lang].writtenBy}</p>
               {isCdbd ? (
                 <Link
-                  href={`/${lang}/cdbd/author/${article.author.toLowerCase().split(' ').join('-')}`}
+                  href={`/${lang}/cdbd/author/${article.author.split(' ').join('-')}`}
                   className="underline hover:text-gray-700"
                 >
                   <p className="inline capitalize">{article.author}</p>
