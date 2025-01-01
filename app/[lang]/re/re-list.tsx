@@ -16,12 +16,12 @@ const text = {
   },
 };
 
-export default async function CdbdList({
+export default async function ReList({
   lang,
   currentPage,
   maxItemsPerPage,
-  tags = ['categoryCdbd'],
-  redirectUrl = '/cdbd',
+  tags = ['categoryRe'],
+  redirectUrl = '/re',
   author = '',
 }: {
   lang: Locale;
@@ -38,7 +38,7 @@ export default async function CdbdList({
     redirect(redirectUrl);
   }
 
-  const allCdbd = await getLatestArticles(
+  const allRe = await getLatestArticles(
     lang,
     maxItemsPerPage,
     (currentPage - 1) * maxItemsPerPage,
@@ -48,12 +48,8 @@ export default async function CdbdList({
 
   return (
     <>
-      {allCdbd &&
-        allCdbd.map((article) => {
-          const book = article.contentfulMetadata.tags
-            .find((tag) => tag.id.startsWith('book'))
-            ?.name.split('-')[1] as Book;
-
+      {allRe &&
+        allRe.map((article) => {
           return (
             <div key={article.slug} className="mb-16 flex flex-col md:flex-row">
               <div className="relative mb-6 aspect-[16/9] w-full flex-none md:mb-0 md:mr-8 md:max-w-72">
@@ -79,12 +75,7 @@ export default async function CdbdList({
                     hour12: true,
                   }).format(new Date(article.date))}
                 </time>
-                <Link
-                  href={`/${lang}/cdbd/${book}`}
-                  className="ml-4 mt-2 rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600 hover:bg-gray-200"
-                >
-                  {bibleBooks[book][lang]}
-                </Link>
+
                 <Link href={`/${lang}/articles/${article.slug}`}>
                   <h1 className="mb-2 mt-2 text-xl font-bold">
                     {article.title}
@@ -105,9 +96,11 @@ export default async function CdbdList({
             </div>
           );
         })}
-      <div className="mt-5 flex w-full justify-center">
-        <Pagination totalPages={totalPages} />
-      </div>
+      {allRe.length > 0 && (
+        <div className="mt-5 flex w-full justify-center">
+          <Pagination totalPages={totalPages} />
+        </div>
+      )}
     </>
   );
 }

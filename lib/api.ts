@@ -291,6 +291,10 @@ function extractWebContent(fetchResponse: any): WebContent {
   return fetchResponse?.data?.webContentCollection?.items?.[0];
 }
 
+function extractRichTextContent(fetchResponse: any): any {
+  return fetchResponse?.data?.contentTypeRichTextCollection?.items?.[0];
+}
+
 function extractCdbdSchedule(fetchResponse: any): any {
   return fetchResponse?.data?.cdbdScheduleCollection?.items?.[0];
 }
@@ -505,6 +509,40 @@ export async function getWebContent(locale: string, preview: boolean) {
     preview,
   );
   return extractWebContent(entry);
+}
+
+export async function getRichTextContent(
+  slug: string,
+  locale: string,
+  preview: boolean,
+) {
+  const entry = await fetchGraphQL(
+    `query {
+      contentTypeRichTextCollection (where: { slug: "${slug}" }, limit: 1, locale:"${locale}"){
+        items {
+          slug
+          content {
+            json
+            links {
+              assets {
+                block {
+                  sys {
+                    id
+                  }
+                  url
+                  description
+                  width
+                  height
+                }
+              }
+            }
+          }
+        }
+      }
+    }`,
+    preview,
+  );
+  return extractRichTextContent(entry);
 }
 
 export async function getCDBDSchedule(preview: boolean) {
