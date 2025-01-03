@@ -1,6 +1,5 @@
 import Container from '@/lib/components/container';
 import { Locale } from '@/i18n-config';
-import PageHeader from '@/lib/components/page-header';
 import GlobalLivestream from '../livestream/global-livestream';
 import SpecialEvents from '../special-events';
 import Header from '@/lib/components/header';
@@ -11,7 +10,6 @@ import ModernContentStrip from '@/lib/components/modern-content-strip';
 import Image from 'next/image';
 import adamCongregation from '@/public/adam_congregation.jpeg';
 import ImageBanner from '@/lib/components/image-banner';
-import Link from 'next/link';
 import { openGraph } from '@/app/shared-metadata';
 import { Metadata } from 'next';
 import LinkButton from '@/lib/components/link-button';

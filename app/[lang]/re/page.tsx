@@ -6,6 +6,10 @@ import { Metadata } from 'next';
 import { getRichTextContent } from '@/lib/api';
 import { Markdown } from '@/lib/markdown';
 import ReList from './re-list';
+import toysImage from '@/public/toys.jpg';
+import reAtHomeImage from '@/public/reathome.jpg';
+import ImageBanner from '@/lib/components/image-banner';
+import Image from 'next/image';
 
 const MAX_ITEMS_PER_PAGE = 8;
 
@@ -33,11 +37,26 @@ export default async function Page({
 
   return (
     <>
+      <ImageBanner
+        src={toysImage}
+        alt={'Picture of toys and coloured crayons.'}
+      />
       <Container>
-        <div className="max-w-screen-lg">
-          <h1 className="mb-8 text-4xl font-bold">{text[lang].title}</h1>
-          <p>{text[lang].text}</p>
-          <div className="prose my-3 max-w-none">
+        <div className="mx-auto max-w-screen-md">
+          <h1 className="mb-4 text-2xl font-bold capitalize sm:text-3xl lg:mb-8 lg:text-4xl">
+            {text[lang].title}
+          </h1>
+
+          <div className="flex w-full flex-col md:flex-row">
+            <p className="mb-8 text-pretty md:mb-0 md:pr-8">
+              {text[lang].text}
+            </p>
+            <div className="mx-auto w-full max-w-lg">
+              <Image src={reAtHomeImage} alt={''} className="object-cover" />
+            </div>
+          </div>
+
+          <div className="prose mt-8 max-w-none leading-tight md:mt-10">
             {resources && <Markdown content={resources.content} />}
           </div>
           <ReList
