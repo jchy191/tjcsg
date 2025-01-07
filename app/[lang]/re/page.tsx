@@ -56,7 +56,7 @@ export default async function Page({
             </div>
           </div>
 
-          <div className="prose mt-8 max-w-none leading-tight md:mt-10">
+          <div className="prose mt-8 max-w-none leading-snug text-black md:mt-10">
             {resources && <Markdown content={resources.content} />}
           </div>
           <ReList
