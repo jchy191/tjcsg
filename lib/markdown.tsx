@@ -15,8 +15,13 @@ function RichTextAsset({
   assets: Asset[] | undefined;
 }) {
   const asset = assets?.find((asset) => asset.sys.id === id);
+  const extension = asset?.url.split('.').pop();
 
   if (asset?.url) {
+    if (extension === 'mp3') {
+      return <audio src={asset.url} controls />;
+    }
+
     return (
       <ContentfulImage
         src={asset.url}
@@ -31,6 +36,7 @@ function RichTextAsset({
 }
 
 export function Markdown({ content }: { content: EventEntry['summary'] }) {
+  console.log(content.json.content);
   return documentToReactComponents(content.json, {
     renderNode: {
       [BLOCKS.EMBEDDED_ASSET]: (node: any) => (

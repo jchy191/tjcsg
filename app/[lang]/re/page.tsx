@@ -32,7 +32,8 @@ export default async function Page({
   searchParams?: { page: string };
 }) {
   const { lang } = params;
-  const resources = await getRichTextContent('re', lang, false);
+  const resources1 = await getRichTextContent('re-1', lang, false);
+  const resources2 = await getRichTextContent('re-2', lang, false);
   const currentPage = Number(searchParams?.page) || 1;
 
   return (
@@ -57,13 +58,21 @@ export default async function Page({
           </div>
 
           <div className="prose mt-8 max-w-none leading-snug text-black md:mt-10">
-            {resources && <Markdown content={resources.content} />}
+            {resources1 && <Markdown content={resources1.content} />}
           </div>
-          <ReList
-            lang={lang}
-            currentPage={currentPage}
-            maxItemsPerPage={MAX_ITEMS_PER_PAGE}
-          />
+          <div className="mt-6">
+            <div className="prose">
+              <h2 className="mb-4">{text[lang].title}</h2>
+            </div>
+            <ReList
+              lang={lang}
+              currentPage={currentPage}
+              maxItemsPerPage={MAX_ITEMS_PER_PAGE}
+            />
+          </div>
+          <div className="prose mt-8 max-w-none leading-snug text-black md:mt-10">
+            {resources2 && <Markdown content={resources2.content} />}
+          </div>
         </div>
       </Container>
     </>
