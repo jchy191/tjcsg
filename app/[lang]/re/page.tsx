@@ -11,16 +11,18 @@ import reAtHomeImage from '@/public/reathome.jpg';
 import ImageBanner from '@/lib/components/image-banner';
 import Image from 'next/image';
 
-const MAX_ITEMS_PER_PAGE = 8;
+const MAX_ITEMS_PER_PAGE = 2;
 
 const text = {
   en: {
     title: 'Religious Education @ Home',
     text: 'Beyond classes in church, effective religious education begins at home. Here are some resources and articles that can aid us in setting up religious education at home. May God guide all our efforts to pass down the faith and may the next generation be rooted in the faith.',
+    devotional: 'Devotionals',
   },
   zh: {
     title: '家庭的宗教教育',
     text: 'Beyond classes in church, effective religious education begins at home. Here are some resources and articles that can aid us in setting up religious education at home. May God guide all our efforts to pass down the faith and may the next generation be rooted in the faith.',
+    devotional: 'Devotionals',
   },
 };
 
@@ -57,18 +59,20 @@ export default async function Page({
             </div>
           </div>
 
-          <div className="prose mt-8 max-w-none leading-snug text-black md:mt-10">
-            {resources1 && <Markdown content={resources1.content} />}
-          </div>
-          <div className="mt-6">
+          <div className="my-6">
             <div className="prose">
-              <h2 className="mb-4">{text[lang].title}</h2>
+              <h2 className="mb-4" id="devotionals">
+                {text[lang].devotional}
+              </h2>
             </div>
             <ReList
               lang={lang}
               currentPage={currentPage}
               maxItemsPerPage={MAX_ITEMS_PER_PAGE}
             />
+          </div>
+          <div className="prose mt-12 max-w-none leading-snug text-black">
+            {resources1 && <Markdown content={resources1.content} />}
           </div>
           <div className="prose mt-8 max-w-none leading-snug text-black md:mt-10">
             {resources2 && <Markdown content={resources2.content} />}

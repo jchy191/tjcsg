@@ -51,7 +51,7 @@ export default async function ReList({
       {allRe &&
         allRe.map((article) => {
           return (
-            <div key={article.slug} className="mb-16 flex flex-col md:flex-row">
+            <div key={article.slug} className="mb-12 flex flex-col md:flex-row">
               <div className="relative mb-6 aspect-[16/9] w-full flex-none md:mb-0 md:mr-8 md:max-w-72">
                 <ContentfulImage
                   src={article.image.url}
@@ -97,8 +97,8 @@ export default async function ReList({
           );
         })}
       {allRe.length > 0 && (
-        <div className="mt-5 flex w-full justify-center">
-          <Pagination totalPages={totalPages} />
+        <div className="flex w-full justify-center">
+          <Pagination totalPages={totalPages} hrefId="devotionals" />
         </div>
       )}
     </>

@@ -36,7 +36,6 @@ function RichTextAsset({
 }
 
 export function Markdown({ content }: { content: EventEntry['summary'] }) {
-  console.log(content.json.content);
   return documentToReactComponents(content.json, {
     renderNode: {
       [BLOCKS.EMBEDDED_ASSET]: (node: any) => (
