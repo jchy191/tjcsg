@@ -82,11 +82,11 @@ const navbar = [
         zh: 'CDBD（每日读经）',
         href: '/cdbd',
       },
-      // {
-      //   en: 'RE@Home',
-      //   zh: '家庭宗教教育',
-      //   href: '/re',
-      // },
+      {
+        en: 'RE@Home',
+        zh: '家庭宗教教育',
+        href: '/re',
+      },
       {
         en: 'All Articles',
         zh: '所有文字资源',
