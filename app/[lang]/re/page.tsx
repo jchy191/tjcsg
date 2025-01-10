@@ -49,15 +49,16 @@ export default async function Page({
           <h1 className="mb-4 text-2xl font-bold capitalize sm:text-3xl lg:mb-8 lg:text-4xl">
             {text[lang].title}
           </h1>
+          <p className="mb-8 text-pretty">{text[lang].text}</p>
 
-          <div className="flex w-full flex-col md:flex-row">
+          {/* <div className="flex w-full flex-col md:flex-row">
             <p className="mb-8 text-pretty md:mb-0 md:pr-8">
               {text[lang].text}
             </p>
             <div className="mx-auto w-full max-w-lg">
               <Image src={reAtHomeImage} alt={''} className="object-cover" />
             </div>
-          </div>
+          </div> */}
 
           <div className="my-6">
             <div className="prose">
