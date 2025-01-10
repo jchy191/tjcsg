@@ -52,7 +52,7 @@ export default async function ReList({
         allRe.map((article) => {
           return (
             <div key={article.slug} className="mb-12 flex flex-col md:flex-row">
-              <div className="relative mb-6 aspect-[16/9] w-full flex-none md:mb-0 md:mr-8 md:max-w-72">
+              <div className="relative mb-4 aspect-[16/9] w-full flex-none md:mb-0 md:mr-8 md:max-w-72">
                 <ContentfulImage
                   src={article.image.url}
                   alt=""

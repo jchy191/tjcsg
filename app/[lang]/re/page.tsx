@@ -60,7 +60,7 @@ export default async function Page({
             </div>
           </div> */}
 
-          <div className="my-6">
+          <div className="my-12">
             <div className="prose">
               <h2 className="mb-4" id="devotionals">
                 {text[lang].devotional}
