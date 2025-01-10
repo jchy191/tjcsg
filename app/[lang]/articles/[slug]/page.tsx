@@ -92,6 +92,40 @@ async function ArticleFoot({
   return <></>;
 }
 
+async function Author({
+  params,
+}: {
+  params: { author: string; authorAlt: string; isCdbd: boolean; lang: Locale };
+}) {
+  const { author, authorAlt, isCdbd, lang } = params;
+  if (author) {
+    return (
+      <>
+        <div className="text-md pt-2 italic text-gray-500">
+          <p className="inline">{text[lang].writtenBy}</p>
+          {isCdbd ? (
+            <Link
+              href={`/${lang}/cdbd/author/${author.split(' ').join('-')}`}
+              className="underline hover:text-gray-700"
+            >
+              <p className="inline capitalize">{author}</p>
+            </Link>
+          ) : (
+            <p className="inline capitalize">{author}</p>
+          )}
+        </div>
+      </>
+    );
+  }
+  if (authorAlt) {
+    return (
+      <div className="text-md pt-2 italic text-gray-500">
+        <p className="capitalize">{authorAlt}</p>
+      </div>
+    );
+  }
+}
+
 export default async function PostPage({
   params,
 }: {
@@ -135,21 +169,14 @@ export default async function PostPage({
           {article.description && (
             <p className="text-md mt-1 text-gray-500">{article.description}</p>
           )}
-          {article.author && (
-            <div className="text-md pt-2 italic text-gray-500">
-              <p className="inline">{text[lang].writtenBy}</p>
-              {isCdbd ? (
-                <Link
-                  href={`/${lang}/cdbd/author/${article.author.split(' ').join('-')}`}
-                  className="underline hover:text-gray-700"
-                >
-                  <p className="inline capitalize">{article.author}</p>
-                </Link>
-              ) : (
-                <p className="inline capitalize">{article.author}</p>
-              )}
-            </div>
-          )}
+          <Author
+            params={{
+              author: article.author,
+              authorAlt: article.authorAlt,
+              isCdbd: false,
+              lang: lang,
+            }}
+          />
 
           <time
             dateTime={article.date}

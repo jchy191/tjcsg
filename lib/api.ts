@@ -194,6 +194,7 @@ const ARTICLE_GRAPHQL_FIELDS = `
   slug
   title
   author
+  authorAlt
   date
   description
   image {
@@ -221,6 +222,7 @@ export type ArticleEntry = {
   title: string;
   description: string;
   author: string;
+  authorAlt: string;
   date: string;
   content: {
     json: any;
