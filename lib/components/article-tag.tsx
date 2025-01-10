@@ -24,7 +24,7 @@ export default function ArticleTag({
     <Link className="" href={createPageURL(tag.id)}>
       <p
         key={tag.id}
-        className=" inline rounded-full bg-gray-100 px-2 py-1 text-sm capitalize text-gray-600 hover:bg-gray-200"
+        className=" inline rounded-full bg-gray-100 px-2 py-1 text-sm text-gray-600 hover:bg-gray-200"
       >
         {tagNameToText(tag.name)}
       </p>
