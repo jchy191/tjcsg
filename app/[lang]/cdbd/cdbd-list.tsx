@@ -52,7 +52,8 @@ export default async function CdbdList({
         allCdbd.map((article) => {
           const book = article.contentfulMetadata.tags
             .find((tag) => tag.id.startsWith('book'))
-            ?.name.split('-')[1] as Book;
+            ?.name.split('-')[1]
+            .toLowerCase() as Book;
 
           return (
             <div key={article.slug} className="mb-16 flex flex-col md:flex-row">
