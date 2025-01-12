@@ -18,7 +18,7 @@ function RichTextAsset({
   const extension = asset?.url.split('.').pop();
 
   if (asset?.url) {
-    if (extension === 'mp3') {
+    if (extension?.toLowerCase() === 'mp3') {
       return <audio src={asset.url} controls />;
     }
 
