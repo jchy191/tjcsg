@@ -173,7 +173,7 @@ export default async function PostPage({
             params={{
               author: article.author,
               authorAlt: article.authorAlt,
-              isCdbd: false,
+              isCdbd: isCdbd,
               lang: lang,
             }}
           />
