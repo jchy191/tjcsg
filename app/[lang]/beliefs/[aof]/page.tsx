@@ -1,8 +1,8 @@
 import { openGraph } from '@/app/shared-metadata';
 import { Locale } from '@/i18n-config';
-import { ArticleEntry, getLatestArticles } from '@/lib/api';
+import { PublicationEntry, getLatestPublications } from '@/lib/api';
 import { Aof, aofNoConst, aofDetails, aof } from '@/lib/articles-of-faith';
-import ArticleCard from '@/lib/components/article-card';
+import PublicationCard from '@/lib/components/publication-card';
 import Container from '@/lib/components/container';
 import FeaturedVerses from '@/lib/components/featured-verses';
 import FeaturedVideo from '@/lib/components/featured-video';
@@ -88,24 +88,28 @@ const pageContent: { [K in Aof]: Content } = {
   },
 };
 
-function RelatedArticles({
-  articles,
+function RelatedPublications({
+  publications,
   lang,
 }: {
   lang: Locale;
-  articles: ArticleEntry[];
+  publications: PublicationEntry[];
 }) {
   return (
     <>
-      {articles.length > 0 && (
+      {publications.length > 0 && (
         <div className="my-16">
           <h1 className="mb-8 text-2xl font-bold capitalize xl:text-3xl">
-            Related articles
+            Related publications
           </h1>
           <div className="grid max-w-screen-xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {articles &&
-              articles.map((article) => (
-                <ArticleCard key={article.slug} lang={lang} article={article} />
+            {publications &&
+              publications.map((publication) => (
+                <PublicationCard
+                  key={publication.slug}
+                  lang={lang}
+                  publication={publication}
+                />
               ))}
           </div>
         </div>
@@ -177,7 +181,7 @@ export default async function Page({
 }) {
   const { lang, aof } = params;
 
-  const articles = await getLatestArticles(lang, 100, 0, [
+  const publications = await getLatestPublications(lang, 100, 0, [
     `doctrine${slugToContentfulTag(aof)}`,
   ]);
 
@@ -201,7 +205,7 @@ export default async function Page({
           className="mb-8"
         />
         <PDFViewer pdfName={pageContent[aof].pdfGDriveId} />
-        <RelatedArticles articles={articles} lang={lang} />
+        <RelatedPublications publications={publications} lang={lang} />
         <Footer currAof={aof} lang={lang} />
       </Container>
     </>

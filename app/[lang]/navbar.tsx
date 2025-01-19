@@ -88,9 +88,9 @@ const navbar = [
         href: '/re',
       },
       {
-        en: 'All Articles',
+        en: 'All Publications',
         zh: '所有文字资源',
-        href: '/articles',
+        href: '/read',
       },
     ],
   },

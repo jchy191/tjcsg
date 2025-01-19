@@ -8,7 +8,7 @@ import tkPicOverlay from '@/public/landingpage_overlap.svg';
 import prayerPic from '@/public/landingpage_prayer.jpeg';
 import biblePic from '@/public/landingpage_bible2.png';
 import biblePic2 from '@/public/landingpage_bible.png';
-import FeaturedArticles from './featured-articles';
+import FeaturedPublications from './featured-publications';
 import Container from '@/lib/components/container';
 import YoutubeList from '@/lib/components/youtube-list';
 import InstagramEmbed from '@/lib/components/instagram-embed';
@@ -254,7 +254,7 @@ export default async function Page({ params }: { params: { lang: Locale } }) {
         paragraphClasses="text-base md:text-lg lg:text-xl"
       />
       <LatestYoutubeVideos lang={lang} titleClasses={titleClasses} />
-      <FeaturedArticles
+      <FeaturedPublications
         lang={lang}
         titleClasses={titleClasses}
         paragraphClasses="text-base md:text-lg lg:text-xl"

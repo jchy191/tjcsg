@@ -5,7 +5,7 @@ import { tagNameToText } from '@/lib/utils';
 import { useSearchParams } from 'next/navigation';
 import { Locale } from '@/i18n-config';
 
-export default function ArticleTag({
+export default function PublicationTag({
   tag,
   lang,
 }: {
@@ -18,7 +18,7 @@ export default function ArticleTag({
     const params = new URLSearchParams(searchParams);
     params.set('tags', tag);
     params.set('page', '1');
-    return `/${lang}/articles?${params.toString()}`;
+    return `/${lang}/read?${params.toString()}`;
   };
   return (
     <Link className="" href={createPageURL(tag.id)}>

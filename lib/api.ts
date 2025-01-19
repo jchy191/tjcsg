@@ -190,7 +190,7 @@ export type EventEntry = {
 };
 
 // Need to separate out "content" because of the query complexity limit of 11000, and "content.links" has a complexity of 1000.
-const ARTICLE_GRAPHQL_FIELDS = `
+const PUBLICATION_GRAPHQL_FIELDS = `
   slug
   title
   author
@@ -217,7 +217,7 @@ const ARTICLE_GRAPHQL_FIELDS = `
   }
 `;
 
-export type ArticleEntry = {
+export type PublicationEntry = {
   slug: string;
   title: string;
   description: string;
@@ -301,7 +301,7 @@ function extractCdbdSchedule(fetchResponse: any): any {
   return fetchResponse?.data?.cdbdScheduleCollection?.items?.[0];
 }
 
-function extractArticleCategories(fetchResponse: any): any {
+function extractPublicationCategories(fetchResponse: any): any {
   const categories = new Map<string, Set<string>>();
   fetchResponse?.data?.categoryCollection?.items?.forEach(
     ({ doctrine, subcategory }: { doctrine: string; subcategory: string }) => {
@@ -319,7 +319,7 @@ function extractArticleCategories(fetchResponse: any): any {
   return categories;
 }
 
-function extractArticleSubcategories(fetchResponse: any): any {
+function extractPublicationSubcategories(fetchResponse: any): any {
   const categories = new Set();
   fetchResponse?.data?.categoryCollection?.items?.forEach(
     (item: { subcategory: string }) => {
@@ -329,11 +329,11 @@ function extractArticleSubcategories(fetchResponse: any): any {
   return Array.from(categories);
 }
 
-function extractArticleEntries(fetchResponse: any): ArticleEntry[] {
+function extractPublicationEntries(fetchResponse: any): PublicationEntry[] {
   return fetchResponse?.data?.articleCollection?.items;
 }
 
-function extractArticle(fetchResponse: any): ArticleEntry {
+function extractPublication(fetchResponse: any): PublicationEntry {
   return fetchResponse?.data?.articleCollection?.items?.[0];
 }
 
@@ -563,7 +563,9 @@ export async function getCDBDSchedule(preview: boolean) {
   return extractCdbdSchedule(entry);
 }
 
-export async function getAllArticlesSlug(isDraftMode: boolean): Promise<any[]> {
+export async function getAllPublicationsSlug(
+  isDraftMode: boolean,
+): Promise<any[]> {
   const entries = await fetchGraphQL(
     `query {
       articleCollection(preview: ${isDraftMode ? 'true' : 'false'}) {
@@ -574,36 +576,36 @@ export async function getAllArticlesSlug(isDraftMode: boolean): Promise<any[]> {
     }`,
     isDraftMode,
   );
-  return extractArticleEntries(entries);
+  return extractPublicationEntries(entries);
 }
 
-export async function getArticlesInSubcat(
+export async function getPublicationsInSubcat(
   cat: string,
   subcat: string,
   preview: boolean,
-): Promise<ArticleEntry[]> {
+): Promise<PublicationEntry[]> {
   const entry = await fetchGraphQL(
     `query {
       articleCollection(where: { category: { doctrine: "${cat}", subcategory: "${subcat}"} }, preview: ${
         preview ? 'true' : 'false'
       }, limit: 1) {
         items {
-          ${ARTICLE_GRAPHQL_FIELDS}
+          ${PUBLICATION_GRAPHQL_FIELDS}
         }
       }
     }`,
     preview,
   );
-  return extractArticleEntries(entry);
+  return extractPublicationEntries(entry);
 }
 
-export async function getLatestArticles(
+export async function getLatestPublications(
   locale: Locale,
   limit: number = 100,
   skip: number = 0,
   tags: string[] = [],
   author: string = '',
-): Promise<ArticleEntry[]> {
+): Promise<PublicationEntry[]> {
   const entry = await fetchGraphQL(
     `query {
         articleCollection(
@@ -618,7 +620,7 @@ export async function getLatestArticles(
           
         ) {
         items {
-          ${ARTICLE_GRAPHQL_FIELDS}
+          ${PUBLICATION_GRAPHQL_FIELDS}
             content {
               json
             }
@@ -626,14 +628,14 @@ export async function getLatestArticles(
       }
     }`,
   );
-  return extractArticleEntries(entry);
+  return extractPublicationEntries(entry);
 }
-export async function getRelatedArticles(
+export async function getRelatedPublications(
   locale: Locale,
   currSlug: string,
   limit: number = 100,
   currTags: string[] = [],
-): Promise<ArticleEntry[]> {
+): Promise<PublicationEntry[]> {
   const entry = await fetchGraphQL(
     `query {
         articleCollection(
@@ -647,7 +649,7 @@ export async function getRelatedArticles(
           
         ) {
         items {
-          ${ARTICLE_GRAPHQL_FIELDS}
+          ${PUBLICATION_GRAPHQL_FIELDS}
             content {
               json
             }
@@ -656,10 +658,10 @@ export async function getRelatedArticles(
     }`,
   );
 
-  return extractArticleEntries(entry);
+  return extractPublicationEntries(entry);
 }
 
-export async function getTotalArticles(
+export async function getTotalPublications(
   locale: Locale,
   tags: string[] = [],
   author: string = '',
@@ -682,7 +684,7 @@ export async function getTotalArticles(
   return entry?.data?.articleCollection?.total;
 }
 
-function extractArticleTags(fetchResponse: any): Map<string, string> {
+function extractPublicationTags(fetchResponse: any): Map<string, string> {
   const tags = new Map();
 
   fetchResponse?.data?.articleCollection?.items?.forEach((item: any) => {
@@ -697,7 +699,7 @@ function extractArticleTags(fetchResponse: any): Map<string, string> {
   return tags;
 }
 
-export async function getAllArticleTags(): Promise<Map<string, string>> {
+export async function getAllPublicationTags(): Promise<Map<string, string>> {
   const entry = await fetchGraphQL(
     `query {
       articleCollection(limit: 1000) {
@@ -712,21 +714,21 @@ export async function getAllArticleTags(): Promise<Map<string, string>> {
       }
     }`,
   );
-  return extractArticleTags(entry);
+  return extractPublicationTags(entry);
 }
 
-export async function getArticle(
+export async function getPublication(
   slug: string,
   locale: Locale,
   preview: boolean,
-): Promise<ArticleEntry> {
+): Promise<PublicationEntry> {
   const entry = await fetchGraphQL(
     `query {
       articleCollection(where: { slug: "${slug}" }, locale: "${locale}", preview: ${
         preview ? 'true' : 'false'
       }, limit: 1) {
         items {
-          ${ARTICLE_GRAPHQL_FIELDS}
+          ${PUBLICATION_GRAPHQL_FIELDS}
             content {
               json
               links {
@@ -748,7 +750,7 @@ export async function getArticle(
     }`,
     preview,
   );
-  return extractArticle(entry);
+  return extractPublication(entry);
 }
 
 function extractCdbdBooks(fetchResponse: any): any {

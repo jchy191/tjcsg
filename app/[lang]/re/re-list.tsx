@@ -1,5 +1,5 @@
 import { Locale } from '@/i18n-config';
-import { getLatestArticles, getTotalArticles } from '@/lib/api';
+import { getLatestPublications, getTotalPublications } from '@/lib/api';
 import { bibleBooks, Book } from '@/lib/bible-books';
 import ContentfulImage from '@/lib/contentful-image';
 import { obtainTextContent } from '@/lib/utils';
@@ -31,14 +31,14 @@ export default async function ReList({
   redirectUrl?: string;
   author?: string;
 }) {
-  const totalItems = await getTotalArticles(lang, tags, author);
+  const totalItems = await getTotalPublications(lang, tags, author);
   const totalPages = Math.ceil(totalItems / maxItemsPerPage);
 
   if (currentPage > totalPages && currentPage != 1) {
     redirect(redirectUrl);
   }
 
-  const allRe = await getLatestArticles(
+  const allRe = await getLatestPublications(
     lang,
     maxItemsPerPage,
     (currentPage - 1) * maxItemsPerPage,
@@ -49,12 +49,15 @@ export default async function ReList({
   return (
     <>
       {allRe &&
-        allRe.map((article) => {
+        allRe.map((publication) => {
           return (
-            <div key={article.slug} className="mb-12 flex flex-col md:flex-row">
+            <div
+              key={publication.slug}
+              className="mb-12 flex flex-col md:flex-row"
+            >
               <div className="relative mb-4 aspect-[16/9] w-full flex-none md:mb-0 md:mr-8 md:max-w-72">
                 <ContentfulImage
-                  src={article.image.url}
+                  src={publication.image.url}
                   alt=""
                   width={1152}
                   height={648}
@@ -63,7 +66,7 @@ export default async function ReList({
               </div>
               <div className="">
                 <time
-                  dateTime={article.date}
+                  dateTime={publication.date}
                   className="mt-2 text-sm text-gray-500"
                 >
                   {new Intl.DateTimeFormat(`${lang}-SG`, {
@@ -73,21 +76,21 @@ export default async function ReList({
                     month: 'short',
                     day: '2-digit',
                     hour12: true,
-                  }).format(new Date(article.date))}
+                  }).format(new Date(publication.date))}
                 </time>
 
-                <Link href={`/${lang}/articles/${article.slug}`}>
+                <Link href={`/${lang}/read/${publication.slug}`}>
                   <h1 className="mb-2 mt-2 text-xl font-bold">
-                    {article.title}
+                    {publication.title}
                   </h1>
                 </Link>
                 <p className="text-md mb-1 line-clamp-3 text-gray-700">
-                  {article.description !== null
-                    ? article.description
-                    : obtainTextContent(article.content)}
+                  {publication.description !== null
+                    ? publication.description
+                    : obtainTextContent(publication.content)}
                 </p>
                 <Link
-                  href={`/${lang}/articles/${article.slug}`}
+                  href={`/${lang}/read/${publication.slug}`}
                   className="mt-6 text-sm font-medium text-button underline hover:text-button_hover"
                 >
                   {text[lang].cta}
