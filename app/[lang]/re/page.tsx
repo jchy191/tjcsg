@@ -10,6 +10,7 @@ import toysImage from '@/public/toys.jpg';
 import reAtHomeImage from '@/public/reathome.jpg';
 import ImageBanner from '@/lib/components/image-banner';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const MAX_ITEMS_PER_PAGE = 2;
 
@@ -18,11 +19,17 @@ const text = {
     title: 'Religious Education @ Home',
     text: 'Beyond classes in church, effective religious education begins at home. Here are some resources and articles that can aid us in setting up religious education at home. May God guide all our efforts to pass down the faith and may the next generation be rooted in the faith.',
     devotional: 'Devotionals',
+    devotional_description:
+      'Published weekly, these devotionals have additional resources that you can use for RE@Home.',
+    devotional_cta: 'Browse all our publications here',
   },
   zh: {
     title: '家庭的宗教教育',
     text: 'Beyond classes in church, effective religious education begins at home. Here are some resources and articles that can aid us in setting up religious education at home. May God guide all our efforts to pass down the faith and may the next generation be rooted in the faith.',
     devotional: 'Devotionals',
+    devotional_description:
+      'Published weekly, these devotionals have additional resources that you can use for RE@Home.',
+    devotional_cta: 'Browse all our publications here',
   },
 };
 
@@ -46,7 +53,7 @@ export default async function Page({
       />
       <Container>
         <div className="mx-auto max-w-screen-md">
-          <h1 className="mb-4 text-2xl font-bold capitalize sm:text-3xl lg:mb-8 lg:text-4xl">
+          <h1 className="my-4 text-2xl font-bold capitalize sm:text-3xl lg:my-8 lg:text-4xl">
             {text[lang].title}
           </h1>
           <p className="mb-8 text-pretty">{text[lang].text}</p>
@@ -60,12 +67,22 @@ export default async function Page({
             </div>
           </div> */}
 
-          <div className="my-12">
+          <div className="my-8">
             <div className="prose">
               <h2 className="mb-4" id="devotionals">
                 {text[lang].devotional}
               </h2>
             </div>
+            <p className="mb-8 text-pretty">
+              {text[lang].devotional_description}{' '}
+              <Link
+                href={`/${lang}/read`}
+                className="text-button underline hover:text-button_hover"
+              >
+                {text[lang].devotional_cta}
+              </Link>
+              {lang === 'zh' ? '。' : '.'}
+            </p>
             <ReList
               lang={lang}
               currentPage={currentPage}
