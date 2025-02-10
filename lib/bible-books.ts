@@ -30,7 +30,7 @@ export const books = [
   'joel',
   'amos',
   'obadiah',
-  'joel',
+  'jonah',
   'micah',
   'nahum',
   'habakkuk',
@@ -233,6 +233,11 @@ export const bibleBooks: BibleBooks = {
   obadiah: {
     en: 'Obadiah',
     zh: '俄巴底亚书',
+    category: '',
+  },
+  jonah: {
+    en: 'Jonah',
+    zh: '约拿书',
     category: '',
   },
   micah: {
