@@ -36,7 +36,7 @@ export default async function Page({
   // Ensures the books in the Book selector are displayed in the correct order
   let cdbdBooks = books.filter((book: Book) =>
     booksWithDevotionals.some(
-      (bookWithDevotionals) => bookWithDevotionals === book,
+      (bookWithDevotionals) => bookWithDevotionals.toLocaleLowerCase() === book,
     ),
   );
 
