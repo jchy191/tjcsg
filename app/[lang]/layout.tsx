@@ -150,7 +150,7 @@ const legal = [
 function Footer({ lang }: { lang: Locale }) {
   return (
     <footer className="bg-lightblue pt-2">
-      <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+      <div className="md:px-12L mx-auto w-full max-w-screen-xl px-6 py-6 sm:px-8 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 basis-1/2 md:mb-0">
             <Link href={`/${lang}`} className="mb-2 flex items-center">
@@ -206,7 +206,7 @@ function Footer({ lang }: { lang: Locale }) {
           </span>
           <Socials
             size={5}
-            style="mt-4 flex sm:mt-0 sm:justify-center md:pr-12 lg:pr-24"
+            style="mt-4 flex sm:mt-0 sm:justify-center md:pr-8 lg:pr-12"
           />
         </div>
       </div>

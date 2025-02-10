@@ -155,6 +155,17 @@ export default async function PostPage({
                 )}
               </time>
             )}
+            <p className="mt-2 text-gray-500 xl:hidden">
+              <Link
+                href={`/${lang}/events/${event.slug}/#map`}
+                className="underline hover:text-button_hover"
+              >
+                {details[lang][event.church].address}
+              </Link>
+            </p>
+            <p className="mt-2 hidden text-gray-500 xl:block">
+              {details[lang][event.church].address}
+            </p>
           </div>
         </div>
 
@@ -167,9 +178,9 @@ export default async function PostPage({
           <h1 className="mb-6 text-4xl font-bold xl:hidden">
             {text[lang].location}
           </h1>
-          <h1 className="mb-4 text-2xl font-bold">
+          <h2 id="map" className="mb-4 text-2xl font-bold">
             {details[lang][event.church].name}
-          </h1>
+          </h2>
           <p className="mb-4 text-gray-500">
             {details[lang][event.church].address}
           </p>
