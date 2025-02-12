@@ -103,16 +103,12 @@ async function Author({
       <>
         <div className="text-md pt-2 italic text-gray-500">
           <p className="inline">{text[lang].writtenBy}</p>
-          {isCdbd ? (
-            <Link
-              href={`/${lang}/cdbd/author/${author.split(' ').join('-')}`}
-              className="underline hover:text-gray-700"
-            >
-              <p className="inline capitalize">{author}</p>
-            </Link>
-          ) : (
+          <Link
+            href={`/${lang}/read/author/${author.split(' ').join('-')}`}
+            className="underline hover:text-gray-700"
+          >
             <p className="inline capitalize">{author}</p>
-          )}
+          </Link>
         </div>
       </>
     );

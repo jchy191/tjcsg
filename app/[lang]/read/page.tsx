@@ -21,10 +21,12 @@ const text = {
   en: {
     home: 'Home',
     publications: 'All Publications',
+    browse: 'Browse All Our Publications',
   },
   zh: {
     home: '主页',
     publications: '所有文字资源',
+    browse: '阅读所有文字资源',
   },
 };
 
@@ -57,7 +59,7 @@ export default async function Page({
   return (
     <Container>
       <Header
-        title={text[lang].publications}
+        title={text[lang].browse}
         breadcrumbs={[
           { name: text[lang].home, href: `/${lang}` },
           { name: text[lang].publications, href: `/${lang}/read` },
