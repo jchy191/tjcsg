@@ -79,22 +79,22 @@ export default async function ReList({
                   }).format(new Date(publication.date))}
                 </time>
 
-                <Link href={`/${lang}/read/${publication.slug}`}>
+                <a href={`/${lang}/read/${publication.slug}`}>
                   <h1 className="mb-2 mt-2 text-xl font-bold">
                     {publication.title}
                   </h1>
-                </Link>
+                </a>
                 <p className="text-md mb-1 line-clamp-3 text-gray-700">
                   {publication.description !== null
                     ? publication.description
                     : obtainTextContent(publication.content)}
                 </p>
-                <Link
+                <a
                   href={`/${lang}/read/${publication.slug}`}
                   className="mt-6 text-sm font-medium text-button underline hover:text-button_hover"
                 >
                   {text[lang].cta}
-                </Link>
+                </a>
               </div>
             </div>
           );

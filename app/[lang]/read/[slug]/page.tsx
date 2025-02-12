@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { draftMode } from 'next/headers';
-
 import { Markdown } from '@/lib/markdown';
 import {
   PublicationEntry,
@@ -18,6 +17,7 @@ import { Metadata, ResolvingMetadata } from 'next';
 import { openGraph } from '@/app/shared-metadata';
 import { obtainTextContent } from '@/lib/utils';
 import React from 'react';
+import Script from 'next/script';
 export const dynamic = 'force-static';
 // export const dynamicParams = false;
 
@@ -66,22 +66,22 @@ async function PublicationFoot({
     return (
       <div className="text-md mt-6 flex justify-between text-button underline">
         {index < cdbdSlugs.length - 1 && (
-          <Link
+          <a
             href={`/${lang}/read/${cdbdSlugs[index + 1].slug}`}
             className="flex hover:text-button_hover"
           >
             <ChevronLeftIcon aria-hidden="true" className="block w-6" />
             {text[lang].next}
-          </Link>
+          </a>
         )}
         {index > 0 ? (
-          <Link
+          <a
             href={`/${lang}/read/${cdbdSlugs[index - 1].slug}`}
             className="flex hover:text-button_hover"
           >
             {index > 0 && text[lang].previous}
             <ChevronRightIcon aria-hidden="true" className="block w-6" />
-          </Link>
+          </a>
         ) : (
           <p></p>
         )}
@@ -222,17 +222,22 @@ export default async function PostPage({
             </h3>
             {relatedPublications.map((relatedPublication) => (
               <div key={relatedPublication.slug} className="mt-2 block">
-                <Link
+                <a
                   href={relatedPublication.slug}
                   className=" font-medium text-gray-700 underline hover:text-button"
                 >
                   {relatedPublication.title}
-                </Link>
+                </a>
               </div>
             ))}
           </div>
         )}
       </div>
+      <Script
+        type="text/javascript"
+        src={`https://www.blueletterbible.org/assets-v3/scripts/blbToolTip/BLB_ScriptTagger-min.js?v=${Math.random() * 999}`}
+        strategy="beforeInteractive"
+      />
     </>
   );
 }

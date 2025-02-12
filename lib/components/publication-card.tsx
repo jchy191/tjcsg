@@ -27,7 +27,7 @@ export default function PublicationCard({
       key={publication.slug}
       className="mx-auto flex w-full flex-col items-start xs:w-3/4 sm:w-full"
     >
-      <Link
+      <a
         href={`/${lang}/read/${publication.slug}`}
         className="relative block aspect-[16/9] w-full"
       >
@@ -39,7 +39,7 @@ export default function PublicationCard({
           className="absolute inset-0 h-full w-full rounded-t-xl border-x-2 border-t-2 bg-gray-50 object-cover"
           role="button"
         />
-      </Link>
+      </a>
       <div className="w-full flex-1 rounded-b-xl border-x-2 border-b-2 px-3 py-3">
         <time
           dateTime={publication.date}
@@ -57,9 +57,9 @@ export default function PublicationCard({
 
         <div className="flex flex-col items-start justify-start">
           <h3 className="mt-1 text-lg font-semibold leading-6 text-gray-900 hover:text-gray-600">
-            <Link href={`/${lang}/read/${publication.slug}`}>
+            <a href={`/${lang}/read/${publication.slug}`}>
               {publication.title}
-            </Link>
+            </a>
           </h3>
           <div className="mt-2 flex gap-2">
             {tags.map((tag) => (
@@ -71,11 +71,11 @@ export default function PublicationCard({
               ? publication.description
               : obtainTextContent(publication.content)}
           </p>
-          <Link href={`/${lang}/read/${publication.slug}`} className="">
+          <a href={`/${lang}/read/${publication.slug}`} className="">
             <p className="mt-3 font-medium text-button underline hover:text-button_hover">
               {text[lang].cta}
             </p>
-          </Link>
+          </a>
         </div>
       </div>
     </article>

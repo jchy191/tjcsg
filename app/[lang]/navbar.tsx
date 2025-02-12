@@ -143,7 +143,7 @@ export default function NavBar({ lang }: { lang: Locale }) {
             {navbar.map((item) =>
               // Case 1: Has subcategories i.e. is a drop down
               item.subcat.length > 0 ? (
-                <Popover className="relative" key={item.href}>
+                <Popover className="relative" key={item.en}>
                   <PopoverButton
                     className={`flex items-center gap-x-1 text-gray-900 hover:text-gray-600 ${desktopClasses}`}
                   >
