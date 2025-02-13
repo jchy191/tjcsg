@@ -207,6 +207,16 @@ const PUBLICATION_GRAPHQL_FIELDS = `
     items {
       slug
       title
+      content {
+        json
+      }
+      description
+      image {
+        url
+        description
+        width
+        height
+      }
     }
   }
   contentfulMetadata {
@@ -250,6 +260,16 @@ export type PublicationEntry = {
     items: {
       slug: string;
       title: string;
+      description: string;
+      content: {
+        json: any;
+      };
+      image: {
+        url: string;
+        description: string;
+        width: number;
+        height: number;
+      };
     }[];
   };
   contentfulMetadata: {
@@ -299,34 +319,6 @@ function extractRichTextContent(fetchResponse: any): any {
 
 function extractCdbdSchedule(fetchResponse: any): any {
   return fetchResponse?.data?.cdbdScheduleCollection?.items?.[0];
-}
-
-function extractPublicationCategories(fetchResponse: any): any {
-  const categories = new Map<string, Set<string>>();
-  fetchResponse?.data?.categoryCollection?.items?.forEach(
-    ({ doctrine, subcategory }: { doctrine: string; subcategory: string }) => {
-      if (!categories.has(doctrine)) {
-        let subcat = new Set<string>();
-        subcat.add(subcategory);
-        categories.set(doctrine, subcat);
-      } else {
-        let cat = categories.get(doctrine) as Set<string>;
-        cat.add(subcategory);
-        categories.set(doctrine, cat);
-      }
-    },
-  );
-  return categories;
-}
-
-function extractPublicationSubcategories(fetchResponse: any): any {
-  const categories = new Set();
-  fetchResponse?.data?.categoryCollection?.items?.forEach(
-    (item: { subcategory: string }) => {
-      categories.add(item.subcategory);
-    },
-  );
-  return Array.from(categories);
 }
 
 function extractPublicationEntries(fetchResponse: any): PublicationEntry[] {
@@ -579,26 +571,6 @@ export async function getAllPublicationsSlug(
   return extractPublicationEntries(entries);
 }
 
-export async function getPublicationsInSubcat(
-  cat: string,
-  subcat: string,
-  preview: boolean,
-): Promise<PublicationEntry[]> {
-  const entry = await fetchGraphQL(
-    `query {
-      articleCollection(where: { category: { doctrine: "${cat}", subcategory: "${subcat}"} }, preview: ${
-        preview ? 'true' : 'false'
-      }, limit: 1) {
-        items {
-          ${PUBLICATION_GRAPHQL_FIELDS}
-        }
-      }
-    }`,
-    preview,
-  );
-  return extractPublicationEntries(entry);
-}
-
 export async function getLatestPublications(
   locale: Locale,
   limit: number = 100,
@@ -801,28 +773,4 @@ export async function getAllCdbdSlugs(): Promise<{ slug: string }[]> {
     }`,
   );
   return entry?.data?.articleCollection?.items;
-}
-
-function extractCdbdAuthors(fetchResponse: any): any {
-  const authors = new Set();
-
-  fetchResponse?.data?.articleCollection?.items?.forEach((item: any) => {
-    authors.add(item.author?.split(' ').join('-').toLowerCase());
-  });
-  return Array.from(authors);
-}
-
-export async function getAllCdbdAuthors(): Promise<string[]> {
-  const entry = await fetchGraphQL(
-    `query {
-      articleCollection(
-        where: {contentfulMetadata: { tags: { id_contains_all: [ "categoryCdbd" ] } } }
-      ) {
-        items {
-          author
-        }
-      }
-    }`,
-  );
-  return extractCdbdAuthors(entry);
 }

@@ -18,6 +18,7 @@ import { openGraph } from '@/app/shared-metadata';
 import { obtainTextContent } from '@/lib/utils';
 import React from 'react';
 import Script from 'next/script';
+import RelatedPublications from './related-publications';
 export const dynamic = 'force-static';
 // export const dynamicParams = false;
 
@@ -216,15 +217,8 @@ export default async function PostPage({
             <h3 className="mt-8 text-nowrap text-lg font-semibold">
               {text[lang].seeAlso}
             </h3>
-            {relatedPublications.map((relatedPublication) => (
-              <div key={relatedPublication.slug} className="mt-2 block">
-                <a
-                  href={relatedPublication.slug}
-                  className=" font-medium text-gray-700 underline hover:text-button"
-                >
-                  {relatedPublication.title}
-                </a>
-              </div>
+            {relatedPublications.map((pub) => (
+              <RelatedPublications key={pub.slug} relatedPublication={pub} />
             ))}
           </div>
         )}
