@@ -94,7 +94,7 @@ const text = {
     name: 'True Jesus Church Singapore',
     explore: 'Explore',
     legal: 'Legal',
-    copyright: '© 2024 True Jesus Church Singapore. All Rights Reserved.',
+    copyright: '© 2025 True Jesus Church Singapore. All Rights Reserved.',
     footer:
       "👋🏼 Hello, we're True Jesus Church, a global Bible-based church. We welcome you to join God's loving family.  📌 Our goal is simple: transform lives and make disciples of Christ through preaching God's full truth of salvation.",
   },
@@ -102,7 +102,7 @@ const text = {
     name: '新加坡真耶稣教会',
     explore: '寻找',
     legal: '法律',
-    copyright: '版权所有 © 2024 新加坡真耶穌教会',
+    copyright: '版权所有 © 2025 新加坡真耶穌教会',
     footer:
       '👋🏼 您好，我们是真耶稣教会，一间全球性的以圣经为根基的教会。我们欢迎您加入充满爱的神的大家庭。📌 我们的目标很简单：通过传扬神救恩的完整真理，改变生命并使人成为基督的门徒。',
   },

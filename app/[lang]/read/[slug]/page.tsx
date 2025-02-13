@@ -19,6 +19,7 @@ import { obtainTextContent } from '@/lib/utils';
 import React from 'react';
 import Script from 'next/script';
 import RelatedPublications from './related-publications';
+import Socials from '@/lib/components/socials';
 export const dynamic = 'force-static';
 // export const dynamicParams = false;
 
@@ -38,6 +39,14 @@ const text = {
     home: 'Home',
     publications: 'Publications',
     writtenBy: 'Written by ',
+    whoWeAre: 'Who Are We',
+    whoWeAreText:
+      "We're the True Jesus Church, a global, non-denominational church built upon the teachings of Jesus and His apostles. Founded by the Holy Spirit, our mission is to spread the complete gospel of salvation to the ends of the earth.",
+    learnMore: 'Learn more about us',
+    worshipText:
+      'We have four places of worship, and we gather for Sabbath and night worship services. We welcome you to join us for any of our in-person services!',
+    worshipWithUs: 'Worship with us',
+    location: 'Location',
   },
   zh: {
     seeAlso: '相关内容',
@@ -46,6 +55,14 @@ const text = {
     home: '主页',
     publications: '所有文章',
     writtenBy: '作者：',
+    whoWeAre: '关于本会',
+    whoWeAreText:
+      '我们是真耶稣教会，一间建立在耶稣与使徒们的教导上的全球性非宗派教会。藉由圣灵创立，我们的使命是把全备的救恩真理传向地极/世界尽头。',
+    learnMore: '关于本会',
+    worshipText:
+      'We have four places of worship, and we gather for Sabbath and night worship services. We welcome you to join us for any of our in-person services!',
+    worshipWithUs: '参与崇拜聚会',
+    location: '教会地点',
   },
 };
 
@@ -121,6 +138,38 @@ async function Author({
       </div>
     );
   }
+}
+
+async function CallToAction({ lang }: { lang: Locale }) {
+  return (
+    <div className="mt-12">
+      <h1 className="mb-6 text-2xl font-bold">{text[lang].whoWeAre}</h1>
+      <p className="mb-2 leading-7 text-gray-700">{text[lang].whoWeAreText}</p>
+      <Link
+        className={
+          'text-nowrap font-medium text-button underline decoration-2 hover:text-button_hover sm:leading-4'
+        }
+        href={`/${lang}/about`}
+      >
+        {text[lang].learnMore}
+      </Link>
+      <p className="mb-2 mt-6 leading-7 text-gray-700">
+        {text[lang].worshipText}
+      </p>
+      <Link
+        className={
+          'text-nowrap font-medium text-button underline decoration-2 hover:text-button_hover sm:leading-4'
+        }
+        href={`/${lang}/locations`}
+      >
+        {text[lang].worshipWithUs}
+      </Link>
+      <div className="mt-8">
+        <h2 className="mb-4 text-lg font-bold">Follow us on social media</h2>
+        <Socials size={6} colour={'text-gray-600'} />
+      </div>
+    </div>
+  );
 }
 
 export default async function PostPage({
@@ -214,7 +263,7 @@ export default async function PostPage({
 
         {relatedPublications.length > 0 && (
           <div>
-            <h3 className="mt-8 text-nowrap text-lg font-semibold">
+            <h3 className="mt-8 text-nowrap text-2xl font-bold">
               {text[lang].seeAlso}
             </h3>
             {relatedPublications.map((pub) => (
@@ -222,6 +271,7 @@ export default async function PostPage({
             ))}
           </div>
         )}
+        <CallToAction lang={lang} />
       </div>
       <Script
         type="text/javascript"
