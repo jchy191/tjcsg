@@ -1,7 +1,7 @@
 import { Locale } from '@/i18n-config';
 import Container from '@/lib/components/container';
 import Link from 'next/link';
-import { bibleBooks, Book, books } from '@/lib/bible-books';
+import { bibleBooks, Books, books } from '@/lib/bible-books';
 import { ChevronLeftIcon } from '@heroicons/react/20/solid';
 import CdbdList from '../cdbd-list';
 import { slugToContentfulTag } from '@/lib/utils';
@@ -27,7 +27,7 @@ export default async function Page({
   params,
   searchParams,
 }: {
-  params: { lang: Locale; book: Book };
+  params: { lang: Locale; book: Books };
   searchParams?: {
     page?: string;
   };
@@ -37,7 +37,7 @@ export default async function Page({
 
   const booksWithDevotionals = await getAllCdbdBooks();
   // Ensures the books in the Book selector are displayed in the correct order
-  let cdbdBooks = books.filter((book: Book) =>
+  let cdbdBooks = books.filter((book: Books) =>
     booksWithDevotionals.some(
       (bookWithDevotionals) => bookWithDevotionals.toLocaleLowerCase() === book,
     ),
@@ -71,7 +71,7 @@ export default async function Page({
           lang={lang}
           currentPage={currentPage}
           maxItemsPerPage={MAX_ITEMS_PER_PAGE}
-          tags={['categoryCdbd', `book${slugToContentfulTag(book)}`]}
+          tags={['categoryCdbd', `${slugToContentfulTag(book)}`]}
           redirectUrl={`${lang}/cdbd/${book}`}
         />
       </div>

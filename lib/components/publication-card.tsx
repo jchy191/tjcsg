@@ -1,8 +1,7 @@
 import { Locale } from '@/i18n-config';
 import { PublicationEntry } from '@/lib/api';
 import ContentfulImage from '@/lib/contentful-image';
-import Link from 'next/link';
-import { obtainTextContent, tagNameToText } from '../utils';
+import { obtainTextContent } from '../utils';
 import PublicationTag from './publication-tag';
 
 const text = {

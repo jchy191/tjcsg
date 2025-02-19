@@ -97,7 +97,7 @@ function RelatedPublications({
 }) {
   return (
     <>
-      {publications.length > 0 && (
+      {publications && publications.length > 0 && (
         <div className="my-16">
           <h1 className="mb-8 text-2xl font-bold capitalize xl:text-3xl">
             Related publications
@@ -180,9 +180,8 @@ export default async function Page({
   params: { lang: Locale; aof: Aof };
 }) {
   const { lang, aof } = params;
-
   const publications = await getLatestPublications(lang, 100, 0, [
-    `doctrine${slugToContentfulTag(aof)}`,
+    `${slugToContentfulTag(aof)}`,
   ]);
 
   return (

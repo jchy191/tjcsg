@@ -9,11 +9,12 @@ import PublicationCard from '@/lib/components/publication-card';
 import Container from '@/lib/components/container';
 import Header from '@/lib/components/header';
 import Pagination from '@/lib/components/pagination';
-import { tagNameToText } from '@/lib/utils';
 import { ChevronLeftIcon } from '@heroicons/react/20/solid';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { tagDictionary, TagIds } from '@/lib/tags';
+import { tagNameToText } from '@/lib/utils';
 
 const MAX_ITEMS_PER_PAGE = 12;
 
@@ -22,11 +23,13 @@ const text = {
     home: 'Home',
     publications: 'All Publications',
     browse: 'Browse All Our Publications',
+    back: 'Back to all publications',
   },
   zh: {
     home: '主页',
     publications: '所有文字资源',
     browse: '阅读所有文字资源',
+    back: '看回所有文字资源',
   },
 };
 
@@ -75,7 +78,7 @@ export default async function Page({
             aria-hidden="true"
             className="-ml-1 mr-1 h-5 w-5 flex-shrink-0 text-gray-400"
           />
-          Back to all publications
+          {text[lang].back}
         </Link>
       )}
 
@@ -87,7 +90,7 @@ export default async function Page({
           let tagName = allTags.get(tagid) as string;
           return (
             <h2 key={tagid} className="inline capitalize">
-              {`${tagNameToText(tagName)} `}
+              {`${tagDictionary[tagid as TagIds] ? tagDictionary[tagid as TagIds][lang] : tagNameToText(tagName)} `}
             </h2>
           );
         })}

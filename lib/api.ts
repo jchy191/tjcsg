@@ -1,6 +1,5 @@
 import { Locale } from '@/i18n-config';
-import { Aof } from './articles-of-faith';
-import { Book, books } from './bible-books';
+import { Books } from './bible-books';
 import { Church } from './church-details';
 
 export type MarkdownType = {
@@ -203,7 +202,7 @@ const PUBLICATION_GRAPHQL_FIELDS = `
     width
     height
   }
-  relatedArticlesCollection {
+  relatedArticlesCollection (limit: 5) {
     items {
       slug
       title
@@ -738,7 +737,7 @@ function extractCdbdBooks(fetchResponse: any): any {
   return Array.from(books);
 }
 
-export async function getAllCdbdBooks(): Promise<Book[]> {
+export async function getAllCdbdBooks(): Promise<Books[]> {
   const entry = await fetchGraphQL(
     `query {
       articleCollection(

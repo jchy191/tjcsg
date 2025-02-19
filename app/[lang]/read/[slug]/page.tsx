@@ -113,9 +113,9 @@ async function PublicationFoot({
 async function Author({
   params,
 }: {
-  params: { author: string; authorAlt: string; isCdbd: boolean; lang: Locale };
+  params: { author: string; authorAlt: string; lang: Locale };
 }) {
-  const { author, authorAlt, isCdbd, lang } = params;
+  const { author, authorAlt, lang } = params;
   if (author) {
     return (
       <>
@@ -224,7 +224,6 @@ export default async function PostPage({
             params={{
               author: publication.author,
               authorAlt: publication.authorAlt,
-              isCdbd: isCdbd,
               lang: lang,
             }}
           />

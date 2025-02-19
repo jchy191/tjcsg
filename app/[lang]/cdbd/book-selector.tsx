@@ -6,7 +6,7 @@ import {
   ListboxOptions,
 } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
-import { bibleBooks, Book } from '@/lib/bible-books';
+import { bibleBooks, Books } from '@/lib/bible-books';
 import Link from 'next/link';
 import { Locale } from '@/i18n-config';
 
@@ -26,9 +26,9 @@ export default function BookSelector({
   lang,
   currentBook,
 }: {
-  cdbdBooks: Book[];
+  cdbdBooks: Books[];
   lang: Locale;
-  currentBook?: Book;
+  currentBook?: Books;
 }) {
   return (
     <Listbox>

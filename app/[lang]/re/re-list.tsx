@@ -1,6 +1,6 @@
 import { Locale } from '@/i18n-config';
 import { getLatestPublications, getTotalPublications } from '@/lib/api';
-import { bibleBooks, Book } from '@/lib/bible-books';
+import { bibleBooks, Books } from '@/lib/bible-books';
 import ContentfulImage from '@/lib/contentful-image';
 import { obtainTextContent } from '@/lib/utils';
 import Link from 'next/link';

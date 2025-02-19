@@ -1,3 +1,5 @@
+import { tagDictionary, TagIds } from './tags';
+
 export function obtainTextContent(item: any) {
   let text = '';
   item &&
@@ -11,12 +13,14 @@ export function obtainTextContent(item: any) {
 
 // This function converts the bible book slug into the Contentful tag (e.g. 1-samuel to 1Samuel)
 export function slugToContentfulTag(string: String) {
+  const key = Object.keys(tagDictionary).find(
+    (key) => tagDictionary[key as TagIds].slug === string,
+  );
+
+  if (key) return key;
+
   let arr = string.split('-');
-
   arr = arr.map((a) => a.charAt(0).toUpperCase() + a.slice(1));
-  // arr[arr.length - 1] =
-  //   arr[arr.length - 1].charAt(0).toUpperCase() + arr[arr.length - 1].slice(1);
-
   return arr.join('');
 }
 

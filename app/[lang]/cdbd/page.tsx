@@ -2,7 +2,7 @@ import { Locale } from '@/i18n-config';
 import Container from '@/lib/components/container';
 import CdbdList from './cdbd-list';
 import { getAllCdbdBooks } from '@/lib/api';
-import { Book, books } from '@/lib/bible-books';
+import { Books, books } from '@/lib/bible-books';
 import BookSelector from './book-selector';
 import { openGraph } from '@/app/shared-metadata';
 import { Metadata } from 'next';
@@ -34,7 +34,7 @@ export default async function Page({
 
   const booksWithDevotionals = await getAllCdbdBooks();
   // Ensures the books in the Book selector are displayed in the correct order
-  let cdbdBooks = books.filter((book: Book) =>
+  let cdbdBooks = books.filter((book: Books) =>
     booksWithDevotionals.some(
       (bookWithDevotionals) => bookWithDevotionals.toLocaleLowerCase() === book,
     ),

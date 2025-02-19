@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { tagNameToText } from '@/lib/utils';
 import { useSearchParams } from 'next/navigation';
 import { Locale } from '@/i18n-config';
+import { tagDictionary, TagIds } from '../tags';
 
 export default function PublicationTag({
   tag,
@@ -26,7 +27,9 @@ export default function PublicationTag({
         key={tag.id}
         className=" inline rounded-full bg-gray-100 px-2 py-1 text-sm text-gray-600 hover:bg-gray-200"
       >
-        {tagNameToText(tag.name)}
+        {tagDictionary[tag.id as TagIds]
+          ? tagDictionary[tag.id as TagIds][lang]
+          : tagNameToText(tag.name)}
       </p>
     </Link>
   );
