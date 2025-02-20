@@ -246,8 +246,7 @@ export default async function Page({ params }: { params: { lang: Locale } }) {
       <Hero lang={lang} />
       <TruthTransforms lang={lang} />
       <WorshipTrueGod lang={lang} titleClasses={titleClasses} />
-      {/* <ReceiveCompleteGospel lang={lang} /> */}
-      {/* <JoinGlobalFamily lang={lang} /> */}
+
       <SpecialEvents
         lang={lang}
         titleClasses={titleClasses}

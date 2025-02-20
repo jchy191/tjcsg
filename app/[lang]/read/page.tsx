@@ -6,7 +6,6 @@ import {
   getTotalPublications,
 } from '@/lib/api';
 import PublicationCard from '@/lib/components/publication-card';
-import Container from '@/lib/components/container';
 import Header from '@/lib/components/header';
 import Pagination from '@/lib/components/pagination';
 import { ChevronLeftIcon } from '@heroicons/react/20/solid';
@@ -15,6 +14,15 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { tagDictionary, TagIds } from '@/lib/tags';
 import { tagNameToText } from '@/lib/utils';
+import PublicationsFilterDialog from './publications-filter-dialog';
+
+const sortOptions = [
+  { name: 'Most Popular', href: '#', current: true },
+  { name: 'Best Rating', href: '#', current: false },
+  { name: 'Newest', href: '#', current: false },
+  { name: 'Price: Low to High', href: '#', current: false },
+  { name: 'Price: High to Low', href: '#', current: false },
+];
 
 const MAX_ITEMS_PER_PAGE = 12;
 
@@ -58,58 +66,48 @@ export default async function Page({
     tags,
   );
   const allTags = await getAllPublicationTags();
-
   return (
-    <Container>
-      <Header
-        title={text[lang].browse}
-        breadcrumbs={[
-          { name: text[lang].home, href: `/${lang}` },
-          { name: text[lang].publications, href: `/${lang}/read` },
-        ]}
-        className="mb-10 mt-2"
-      />
-      {tags.length > 0 && (
-        <Link
-          href={`/${lang}/read`}
-          className="text-md flex items-center font-medium text-gray-500 hover:text-gray-700"
-        >
-          <ChevronLeftIcon
-            aria-hidden="true"
-            className="-ml-1 mr-1 h-5 w-5 flex-shrink-0 text-gray-400"
-          />
-          {text[lang].back}
-        </Link>
-      )}
-
-      <div className="mb-8 text-2xl">
-        {tags.length > 0 && (
-          <h2 className="inline">Showing all publications for </h2>
-        )}
-        {tags.map((tagid) => {
-          let tagName = allTags.get(tagid) as string;
-          return (
-            <h2 key={tagid} className="inline capitalize">
-              {`${tagDictionary[tagid as TagIds] ? tagDictionary[tagid as TagIds][lang] : tagNameToText(tagName)} `}
-            </h2>
-          );
-        })}
-      </div>
-
-      <div className="grid max-w-screen-xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {allPublications &&
-          allPublications.map((publication) => (
-            <PublicationCard
-              key={publication.slug}
-              lang={lang}
-              publication={publication}
+    // <Container>
+    <div className="bg-white">
+      <div>
+        <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="border-b border-gray-200 pb-6 pt-8">
+            <Header
+              title={text[lang].browse}
+              breadcrumbs={[
+                { name: text[lang].home, href: `/${lang}` },
+                { name: text[lang].publications, href: `/${lang}/read` },
+              ]}
+              className="mb-2 mt-2"
             />
-          ))}
+          </div>
+
+          <section aria-labelledby="products-heading" className="pb-24 pt-6">
+            <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4 xl:grid-cols-6">
+              <PublicationsFilterDialog lang={lang} tags={allTags} />
+
+              <div className="lg:col-span-3 xl:col-span-5">
+                {' '}
+                <div className="grid max-w-screen-xl grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                  {allPublications &&
+                    allPublications.map((publication) => (
+                      <PublicationCard
+                        key={publication.slug}
+                        lang={lang}
+                        publication={publication}
+                      />
+                    ))}
+                </div>
+                <div className="mt-10 flex w-full justify-center lg:mt-16">
+                  <Pagination totalPages={totalPages} />
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
       </div>
-      <div className="mt-10 flex w-full justify-center lg:mt-16">
-        <Pagination totalPages={totalPages} />
-      </div>
-    </Container>
+    </div>
+    // </Container>
   );
 }
 

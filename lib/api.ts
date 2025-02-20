@@ -1,6 +1,7 @@
 import { Locale } from '@/i18n-config';
 import { Books } from './bible-books';
 import { Church } from './church-details';
+import { TagIds } from './tags';
 
 export type MarkdownType = {
   json: any;
@@ -655,22 +656,22 @@ export async function getTotalPublications(
   return entry?.data?.articleCollection?.total;
 }
 
-function extractPublicationTags(fetchResponse: any): Map<string, string> {
-  const tags = new Map();
+function extractPublicationTags(fetchResponse: any): TagIds[] {
+  const tags = new Set<TagIds>();
 
   fetchResponse?.data?.articleCollection?.items?.forEach((item: any) => {
     item.contentfulMetadata.tags?.forEach(
-      (tag: { name: string; id: string }) => {
-        if (!tags.get(tag.id)) {
-          tags.set(tag.id, tag.name);
+      (tag: { name: string; id: TagIds }) => {
+        if (!tags.has(tag.id)) {
+          tags.add(tag.id);
         }
       },
     );
   });
-  return tags;
+  return Array.from(tags);
 }
 
-export async function getAllPublicationTags(): Promise<Map<string, string>> {
+export async function getAllPublicationTags(): Promise<TagIds[]> {
   const entry = await fetchGraphQL(
     `query {
       articleCollection(limit: 1000) {

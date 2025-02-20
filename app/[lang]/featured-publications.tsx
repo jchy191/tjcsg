@@ -67,7 +67,7 @@ export default async function FeaturedPublications({
       </div>
       <div className="mt-10 block text-center">
         <Link
-          href={'/publicaions'}
+          href={'/read'}
           className="text-lg capitalize text-button underline hover:text-button_hover lg:text-xl"
         >
           {text[lang].viewAll}

@@ -1,8 +1,9 @@
 export const tagIds = [
-  'categoryTopical',
+  // Ordering of Category tags in terms of importance is done here
+  'categoryCdbd',
   'categoryRe',
   'categoryDoctrine',
-  'categoryCdbd',
+  'categoryTopical',
   'doctrineFootwashing',
   'doctrineBaptism',
   'bookGenesis',
@@ -80,7 +81,7 @@ export type TagDetails =
       en: string;
       zh: string;
       slug: string;
-      type: 'category' | 'doctrine';
+      type: 'category' | 'doctrine' | 'theme';
     }
   | {
       en: string;
@@ -98,25 +99,25 @@ export const tagDictionary: TagDictionary = {
   categoryTopical: {
     en: 'Topical',
     zh: '话题性',
-    slug: '',
+    slug: 'topical',
     type: 'category',
   },
   categoryRe: {
     en: 'RE@Home',
     zh: '家庭宗教教育',
-    slug: '',
+    slug: 're',
     type: 'category',
   },
   categoryDoctrine: {
     en: 'Doctrine',
     zh: '信条',
-    slug: '',
+    slug: 'doctrine',
     type: 'category',
   },
   categoryCdbd: {
     en: 'CDBD',
     zh: '每日读经',
-    slug: '',
+    slug: 'cdbd',
     type: 'category',
   },
   doctrineFootwashing: {
